@@ -70,3 +70,17 @@ class Translator():
                     return "RU"
         return "EN"
 
+    def change_cap(self, text):
+
+        t = list(text)
+
+        for i in range(0, len(t)):
+            if (t[i] != " "):
+                if(t[i].isupper()):
+                    t[i] = t[i].lower()
+                elif(t[i].islower()):
+                    t[i] = t[i].upper()
+
+        return "".join(t)
+
+

@@ -2,23 +2,25 @@ from translator import Translator
 from pynput.keyboard import Key, KeyCode, Listener
 import pyperclip
 
-def get_input():
-    # print("\n"+"Write text to translate \n")
-    # text  = input("-->")
-    # # text = "GNSDJLGNS>:"
-    # output = Translator().translate(text)
-    # print(output)
+def changeLayout():
+
     cb = pyperclip.paste()
     output = Translator().translate(cb)
     pyperclip.copy(output)
 
 
+def changeCapitalise():
+
+    cb = pyperclip.paste()
+    output = Translator().change_cap(cb)
+    pyperclip.copy(output)
+
 
 combination_to_function = {
-    frozenset([Key.ctrl_l, Key.space]): get_input, 
+    frozenset([Key.ctrl_l, Key.space]): changeLayout,
+    frozenset([Key.ctrl_l, Key.alt_l, Key.space]): changeCapitalise,
 }
 
-# Currently pressed keys
 current_keys = set()
 
 def on_press(key):
